@@ -7,6 +7,9 @@ public class NewFactoryController : MenuPage
     [SerializeField] private FactoryController factoryController;
     [SerializeField] private GameObject factoriesContainerObject;
     [SerializeField] private GameObject factoryPrefab;
+    [SerializeField] private GameObject storageUpgradePrefab;
+    [SerializeField] private GameObject clickUpgradePrefab;
+    [SerializeField] private GameObject AutoUpgradePrefab;
     private Button BackToListButton;
     private Button CreateFactoryButton;
     private TextField FactoryNameInput;
@@ -48,6 +51,15 @@ public class NewFactoryController : MenuPage
 
         GameObject newFactory = Instantiate(factoryPrefab, factoriesContainerObject.transform);
         newFactory.name = factoryName;
+
+        GameObject newStorageUpgrade = Instantiate(storageUpgradePrefab, newFactory.transform);
+        newStorageUpgrade.name = "StorageUpgrade";
+
+        GameObject newClickUpgrade = Instantiate(clickUpgradePrefab, newFactory.transform);
+        newClickUpgrade.name = "StorageUpgrade";
+
+        GameObject newAutoUpgrade = Instantiate(AutoUpgradePrefab, newFactory.transform);
+        newAutoUpgrade.name = "AutoUpgrade";
 
         FactoryNameInput.value = "";
 

@@ -3,7 +3,6 @@ using UnityEngine;
 public class Factory : MonoBehaviour
 {
     public int StoredProduct { get; private set; }
-    public int MaxStorage { get; private set; }
 
     private Stats stats;
 
@@ -14,7 +13,9 @@ public class Factory : MonoBehaviour
 
     public void IncreaseStoredProduct(int value)
     {
-        int spaceLeft = MaxStorage - StoredProduct;
+        GetComponentInChildren<StorageUpgrade>();
+
+        int spaceLeft = GetComponentInChildren<StorageUpgrade>().storage - StoredProduct;
         int amountToVariable1 = Mathf.Min(value, spaceLeft);
 
         StoredProduct += amountToVariable1;
@@ -26,10 +27,5 @@ public class Factory : MonoBehaviour
     public void DecreaseStoredProduct(int value)
     {
         StoredProduct -= value;
-    }
-
-    public void IncreaseMaxStorage(int value)
-    {
-        MaxStorage += value;
     }
 }

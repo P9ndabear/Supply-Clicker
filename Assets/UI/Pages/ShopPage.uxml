@@ -6,6 +6,10 @@
                 <ui:Label text="" name="Balance"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="ContentContainer" style="flex-grow: 1; height: 75%;"/>
+        <ui:VisualElement name="Content" style="flex-grow: 1; height: 75%;">
+            <ui:Button text="+50 storage" name="IncreaseStorageButton" style="width: 200px; height: 100px; font-size: 30px;"/>
+            <ui:Button text="+1 click" name="IncreaseClickButton" style="width: 200px; height: 100px; font-size: 30px;"/>
+            <ui:Button text="+2 Click/sec" name="IncreaseAutoButton" style="width: 200px; height: 100px; font-size: 30px;"/>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

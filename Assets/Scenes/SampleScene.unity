@@ -229,6 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043971095}
   - component: {fileID: 1043971096}
+  - component: {fileID: 1043971097}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -265,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: 2a48f8cdff22377499671e066a37de92, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 3580373948eabd34c9ff98f235e865f1, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
@@ -274,6 +275,20 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1043971097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043971094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463157e384e6935488f54a1db90046e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopController
+  factoryController: {fileID: 1876587300}
+  stats: {fileID: 1382572446}
 --- !u!1 &1382572444
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +483,9 @@ MonoBehaviour:
   factoryController: {fileID: 1876587300}
   factoriesContainerObject: {fileID: 1014633393}
   factoryPrefab: {fileID: 989607508892814509, guid: 2f1e56157bb7d924aafdc310682f9c8a, type: 3}
+  storageUpgradePrefab: {fileID: 5708242994264393008, guid: 27854e028c3c14b418c148d4d4fece1e, type: 3}
+  clickUpgradePrefab: {fileID: 4089468485195818095, guid: cf0bf46e2b9668848a81fc86810ce75a, type: 3}
+  AutoUpgradePrefab: {fileID: 579067672237531278, guid: f7a9d4a427280074ba9bae13d8d46adf, type: 3}
 --- !u!1 &1860378301
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FactoryController
   factoriesListController: {fileID: 1492857170}
+  shopController: {fileID: 1043971097}
   stats: {fileID: 1382572446}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -4,11 +4,12 @@ using UnityEngine.UIElements;
 public class FactoryController : MenuPage
 {
     [SerializeField] private FactoriesListController factoriesListController;
+    [SerializeField] private ShopController shopController;
     [SerializeField] private Stats stats;
     private Button FactoriesButton;
     private Button ShopButton;
     private Button ProduceButton;
-    private Factory factory;
+    public Factory factory { get; private set; }
 
     protected override void SetDependencies()
     {
@@ -41,12 +42,14 @@ public class FactoryController : MenuPage
 
     private void OnShopButtonClicked()
     {
-        print("Open shop");
+        shopController.Populate(factory);
+        shopController.ShowMenu(true);
+        ShowMenu(false);
     }
 
     private void OnProduceButtonClicked()
     {
-        factory.IncreaseStoredProduct(1);
+        factory.GetComponentInChildren<ClickUpgrade>().HandleClick();
     }
 
     public void PopulateFactory(GameObject f)
@@ -61,7 +64,7 @@ public class FactoryController : MenuPage
             return;
 
         ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<VisualElement>("StatsContainer").Q<VisualElement>("BalanceContainer").Q<Label>("Balance").text = "Balance: " + stats.balance.ToString();
-        ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<VisualElement>("StatsContainer").Q<VisualElement>("StorageContainer").Q<Label>("Storage").text = "Storage: " + factory.StoredProduct.ToString() + "/" + factory.MaxStorage.ToString();
+        ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<VisualElement>("StatsContainer").Q<VisualElement>("StorageContainer").Q<Label>("Storage").text = "Storage: " + factory.StoredProduct.ToString() + "/" + factory.GetComponentInChildren<StorageUpgrade>().storage.ToString();
     }
 
     protected override void PostShowMenu(DisplayStyle display) { }
