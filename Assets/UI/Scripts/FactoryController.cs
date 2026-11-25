@@ -4,9 +4,12 @@ using UnityEngine.UIElements;
 public class FactoryController : MenuPage
 {
     [SerializeField] private FactoriesListController factoriesListController;
+    [SerializeField] private Stats stats;
     private Button FactoriesButton;
     private Button ShopButton;
     private Button ProduceButton;
+    private Factory factory;
+
     protected override void SetDependencies()
     {
         FactoriesButton = ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<Button>("FactoriesButton");
@@ -31,6 +34,7 @@ public class FactoryController : MenuPage
 
     private void OnFactoriesButtonClicked()
     {
+        factory = null;
         factoriesListController.ShowMenu(true);
         ShowMenu(false);
     }
@@ -42,14 +46,22 @@ public class FactoryController : MenuPage
 
     private void OnProduceButtonClicked()
     {
-        print("produce");
+        factory.IncreaseStoredProduct(1);
     }
 
-
-
-    public void PopulateFactory()
+    public void PopulateFactory(GameObject f)
     {
-        print("populate");
+        factory = f.GetComponent<Factory>();
+        ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<VisualElement>("StatsContainer").Q<VisualElement>("FactoryNameContainer").Q<Label>("FactoryName").text = f.name;
+    }
+
+    private void Update()
+    {
+        if (ui.style.display == DisplayStyle.None)
+            return;
+
+        ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<VisualElement>("StatsContainer").Q<VisualElement>("BalanceContainer").Q<Label>("Balance").text = "Balance: " + stats.balance.ToString();
+        ui.Q<VisualElement>("Background").Q<VisualElement>("Top").Q<VisualElement>("StatsContainer").Q<VisualElement>("StorageContainer").Q<Label>("Storage").text = "Storage: " + factory.StoredProduct.ToString() + "/" + factory.MaxStorage.ToString();
     }
 
     protected override void PostShowMenu(DisplayStyle display) { }

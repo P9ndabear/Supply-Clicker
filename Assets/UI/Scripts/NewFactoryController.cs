@@ -50,6 +50,8 @@ public class NewFactoryController : MenuPage
         newFactory.name = factoryName;
 
         FactoryNameInput.value = "";
+
+        factoryController.PopulateFactory(newFactory);
         ShowMenu(false);
         factoryController.ShowMenu(true);
     }

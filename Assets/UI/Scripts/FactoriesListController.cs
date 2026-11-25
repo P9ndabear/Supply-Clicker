@@ -55,13 +55,16 @@ public class FactoriesListController : MenuPage
         VisualElement tempObjectItem = factoryButton.CloneTree();
         Button button = tempObjectItem.Q<Button>("ItemContainer");
         button.text = factory.name;
-        button.clicked += () => OnFactoryClicked(factory.name);
+        button.clicked += () => OnFactoryClicked(factory);
         ListContainer.Add(tempObjectItem);
     }
 
-    private void OnFactoryClicked(string factoryName)
+    private void OnFactoryClicked(GameObject factory)
     {
-        factoryController.PopulateFactory();
+        factoryController.PopulateFactory(factory);
+
+        ShowMenu(false);
+        factoryController.ShowMenu(true);
     }
 
     private void OnCreateNewFactory()

@@ -2,15 +2,34 @@ using UnityEngine;
 
 public class Factory : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int StoredProduct { get; private set; }
+    public int MaxStorage { get; private set; }
+
+    private Stats stats;
+
+    private void OnEnable()
     {
-        
+        stats = FindAnyObjectByType<Stats>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseStoredProduct(int value)
     {
-        
+        int spaceLeft = MaxStorage - StoredProduct;
+        int amountToVariable1 = Mathf.Min(value, spaceLeft);
+
+        StoredProduct += amountToVariable1;
+
+        int excess = value - amountToVariable1;
+        stats.IncreaseBalance(excess);
+    }
+
+    public void DecreaseStoredProduct(int value)
+    {
+        StoredProduct -= value;
+    }
+
+    public void IncreaseMaxStorage(int value)
+    {
+        MaxStorage += value;
     }
 }
